@@ -9,8 +9,8 @@
 - configurable language features/extensions  
 - interpreter core written in C  
 - embeddable: memory functions, input/output and caching detached from core  
-- command-line interpreter built for Windows x86, Windows x64, Linux i386, Linux amd64, Linux armhf  
-- interpreter with graphical IDE and debugger built for various platforms (uses wxWidgets GUI library)  
+- [command-line interpreter](https://github.com/basic-1/basic-1) built for Windows x86, Windows x64, Linux i386, Linux amd64, Linux armhf  
+- [interpreter with graphical IDE and debugger](https://github.com/basic-1/basic-1) built for various platforms (uses wxWidgets GUI library)  
 - optional Unicode support  
 - licensed under MIT license  
   
