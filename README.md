@@ -77,8 +77,8 @@
   
 # More documents  
   
-[BASIC1 language reference](https://github.com/basic-1/b1core/docs/reference.md)  
-[BASIC1 interpreter limitations](https://github.com/basic-1/b1core/docs/limits.md)  
-[BASIC1 interpreter core embedding](https://github.com/basic-1/b1core/docs/embedding.md)  
-[Change log](https://github.com/basic-1/b1core/docs/changelog)  
+[BASIC1 language reference](https://github.com/basic-1/b1core/blob/master/docs/reference.md)  
+[BASIC1 interpreter limitations](https://github.com/basic-1/b1core/blob/master/docs/limits.md)  
+[BASIC1 interpreter core embedding](https://github.com/basic-1/b1core/blob/master/docs/embedding.md)  
+[Change log](https://github.com/basic-1/b1core/blob/master/docs/changelog)  
   
