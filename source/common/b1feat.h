@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2021 Nikolay Pletnev
+ Copyright (c) 2020-2023 Nikolay Pletnev
  MIT license
 
  feat.h: interpreter features
@@ -90,6 +90,12 @@
 
 // enables hexadecimal form of numerics (value has to be preceded by 0x prefix, e.g. 0x10)
 #define B1_FEATURE_HEX_NUM
+
+// enables IOCTL statement
+//#define B1_FEATURE_STMT_IOCTL
+
+// allow underscore characters in identifiers
+//#define B1_FEATURE_UNDERSCORE_ID
 
 
 // constraints and memory usage

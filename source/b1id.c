@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020 Nikolay Pletnev
+ Copyright (c) 2020-2023 Nikolay Pletnev
  MIT license
 
  b1id.c: hashes for identifiers (variable and function names)
@@ -55,6 +55,9 @@ static const uint8_t b1_id_stmts[] =
 	B1_ID_STMT_IF,
 #ifdef B1_FEATURE_FUNCTIONS_USER
 	B1_ID_STMT_DEF,
+#endif
+#ifdef B1_FEATURE_STMT_IOCTL
+	B1_ID_STMT_IOCTL,
 #endif
 	B1_ID_STMT_DIM,
 	B1_ID_STMT_ON,
@@ -111,6 +114,9 @@ static const B1_T_IDHASH b1_id_stmt_hashes[] =
 	0xba4b,
 #ifdef B1_FEATURE_FUNCTIONS_USER
 	0xbe83,
+#endif
+#ifdef B1_FEATURE_STMT_IOCTL
+	0xbf71,
 #endif
 	0xceeb,
 	0xd400,

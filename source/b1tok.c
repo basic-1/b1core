@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020-2021 Nikolay Pletnev
+ Copyright (c) 2020-2023 Nikolay Pletnev
  MIT license
 
  b1tok.c: tokenizer
@@ -246,9 +246,17 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 		// process variable or function name or a statement
 		if(toktype & B1_TOKEN_TYPE_IDNAME)
 		{
+#ifdef B1_FEATURE_UNDERSCORE_ID
+			if((ctype & (B1_CTYPE_DIGIT | B1_CTYPE_LETTER | B1_CTYPE_TYPE_SPEC)) || c == B1_T_C_UNDERSCORE)
+#else
 			if(ctype & (B1_CTYPE_DIGIT | B1_CTYPE_LETTER | B1_CTYPE_TYPE_SPEC))
+#endif
 			{
+#ifdef B1_FEATURE_UNDERSCORE_ID
+				if(ctype == B1_CTYPE_DIGIT || c == B1_T_C_UNDERSCORE)
+#else
 				if(ctype == B1_CTYPE_DIGIT)
+#endif
 				{
 					toktype = B1_TOKEN_TYPE_IDNAME;
 				}

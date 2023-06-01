@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020 Nikolay Pletnev
+ Copyright (c) 2020-2023 Nikolay Pletnev
  MIT license
 
  b1id.c: definitions and types for identifiers (variable and function names)
@@ -86,6 +86,9 @@
 #endif
 #ifdef B1_FEATURE_STMT_STOP
 #define B1_ID_STMT_STOP ((uint8_t)0x1B)
+#endif
+#ifdef B1_FEATURE_STMT_IOCTL
+#define B1_ID_STMT_IOCTL ((uint8_t)0x1C)
 #endif
 
 

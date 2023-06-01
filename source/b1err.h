@@ -53,7 +53,7 @@
 // EBUFSMALL error: buffer too small
 #define B1_RES_EBUFSMALL ((B1_T_ERROR)114)
 // ESTRLONG error: string too long
-#define B1_ESTRLONG ((B1_T_ERROR)115)
+#define B1_RES_ESTRLONG ((B1_T_ERROR)115)
 // EMANYBRAC error: too many open brackets
 #define B1_RES_EMANYBRAC ((B1_T_ERROR)116)
 // EUNKIDENT error: unknown identifier

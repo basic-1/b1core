@@ -383,7 +383,7 @@ static B1_T_ERROR b1_eval_strcat(B1_VAR *pvar1, uint8_t optype)
 
 				if(len > B1_MAX_STRING_LEN)
 				{
-					err = B1_ESTRLONG;
+					err = B1_RES_ESTRLONG;
 				}
 				else
 				{
