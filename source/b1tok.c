@@ -21,18 +21,29 @@
 B1_T_IDHASH b1_tok_id_hash;
 
 
-// token character types
-#define B1_CTYPE_UNKNOWN ((uint8_t)0x0)
-#define B1_CTYPE_LETTER ((uint8_t)0x1)
-#define B1_CTYPE_DIGIT ((uint8_t)0x2)
-#define B1_CTYPE_OPER ((uint8_t)0x4)
-#define B1_CTYPE_SPACE ((uint8_t)0x8)
-#ifdef B1_FRACTIONAL_TYPE_EXISTS
-#define B1_CTYPE_POINT ((uint8_t)0x10)
+#ifdef B1_FEATURE_UNDERSCORE_ID
+typedef uint16_t B1_T_TOKCHAR;
+#else
+typedef uint16_t B1_T_TOKCHAR;
 #endif
-#define B1_CTYPE_TYPE_SPEC ((uint8_t)0x20)
-#define B1_CTYPE_NULL ((uint8_t)0x40)
-#define B1_CTYPE_COMMENT ((uint8_t)0x80)
+
+
+// token character types
+#define B1_CTYPE_UNKNOWN ((B1_T_TOKCHAR)0x0)
+#define B1_CTYPE_LETTER ((B1_T_TOKCHAR)0x1)
+#define B1_CTYPE_DIGIT ((B1_T_TOKCHAR)0x2)
+#define B1_CTYPE_OPER ((B1_T_TOKCHAR)0x4)
+#define B1_CTYPE_SPACE ((B1_T_TOKCHAR)0x8)
+#ifdef B1_FRACTIONAL_TYPE_EXISTS
+#define B1_CTYPE_POINT ((B1_T_TOKCHAR)0x10)
+#endif
+#define B1_CTYPE_TYPE_SPEC ((B1_T_TOKCHAR)0x20)
+#define B1_CTYPE_NULL ((B1_T_TOKCHAR)0x40)
+#define B1_CTYPE_COMMENT ((B1_T_TOKCHAR)0x80)
+#ifdef B1_FEATURE_UNDERSCORE_ID
+#define B1_CTYPE_UNDERSCORE ((B1_T_TOKCHAR)0x100)
+#endif
+
 
 // numeric value parsing stages
 // integer part
@@ -55,7 +66,7 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 {
 	B1_T_CHAR c, c1;
 	B1_T_INDEX b, len, out_index;
-	uint8_t ctype;
+	B1_T_TOKCHAR ctype;
 	uint8_t toktype, extra;
 
 	// token starting offset
@@ -99,6 +110,12 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 			// a digit
 			ctype = B1_CTYPE_DIGIT;
 		else
+#ifdef B1_FEATURE_UNDERSCORE_ID
+		if(B1_T_ISUNDERSCORE(c))
+			// underscore character
+			ctype = B1_CTYPE_UNDERSCORE;
+		else
+#endif
 		if(B1_T_ISEXPRCHAR(c))
 			// an operation or part of an operation
 			ctype = B1_CTYPE_OPER;
@@ -129,6 +146,9 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 			toktype =
 				// variable/function name should start from a letter
 				ctype == B1_CTYPE_LETTER						?	B1_TOKEN_TYPE_IDNAME | B1_TOKEN_TYPE_LETTERS :
+#ifdef B1_FEATURE_UNDERSCORE_ID
+				ctype == B1_CTYPE_UNDERSCORE					?	B1_TOKEN_TYPE_IDNAME :
+#endif
 				// numerics start from a digit or point
 #ifdef B1_FRACTIONAL_TYPE_EXISTS
 				ctype & (B1_CTYPE_DIGIT | B1_CTYPE_POINT)		?	B1_TOKEN_TYPE_NUMERIC | B1_TOKEN_TYPE_DIGITS :
@@ -247,13 +267,13 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 		if(toktype & B1_TOKEN_TYPE_IDNAME)
 		{
 #ifdef B1_FEATURE_UNDERSCORE_ID
-			if((ctype & (B1_CTYPE_DIGIT | B1_CTYPE_LETTER | B1_CTYPE_TYPE_SPEC)) || c == B1_T_C_UNDERSCORE)
+			if(ctype & (B1_CTYPE_DIGIT | B1_CTYPE_LETTER | B1_CTYPE_UNDERSCORE | B1_CTYPE_TYPE_SPEC))
 #else
 			if(ctype & (B1_CTYPE_DIGIT | B1_CTYPE_LETTER | B1_CTYPE_TYPE_SPEC))
 #endif
 			{
 #ifdef B1_FEATURE_UNDERSCORE_ID
-				if(ctype == B1_CTYPE_DIGIT || c == B1_T_C_UNDERSCORE)
+				if(ctype & (B1_CTYPE_DIGIT | B1_CTYPE_UNDERSCORE))
 #else
 				if(ctype == B1_CTYPE_DIGIT)
 #endif

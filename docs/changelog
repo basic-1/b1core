@@ -1,3 +1,9 @@
+b1core (1.0.0-8) unstable; urgency=low
+
+  * improved tokenizer (underscore character processing)
+
+ -- Nikolay Pletnev <b1justomore@gmail.com>  Mon, 03 Jul 2023 18:02:15 +0300
+
 b1core (1.0.0-6) unstable; urgency=low
 
   * changes for further improvements

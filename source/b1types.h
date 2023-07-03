@@ -140,6 +140,7 @@
 #define B1_T_ISDBLQUOTE(C) ((B1_T_CHAR)(C) == B1_T_C_DBLQUOTE)
 #define B1_T_ISCOMMA(C) ((B1_T_CHAR)(C) == B1_T_C_COMMA)
 #define B1_T_ISSEMICOLON(C) ((B1_T_CHAR)(C) == B1_T_C_SEMICOLON)
+#define B1_T_ISUNDERSCORE(C) ((B1_T_CHAR)(C) == B1_T_C_UNDERSCORE)
 #define B1_T_ISCR(C) ((B1_T_CHAR)(C) == B1_T_C_CR)
 #define B1_T_ISLF(C) ((B1_T_CHAR)(C) == B1_T_C_LF)
 #define B1_T_ISCRLF(C) (B1_T_ISCR(C) || B1_T_ISLF(C))
