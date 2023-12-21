@@ -97,6 +97,9 @@
 // allow underscore characters in identifiers
 //#define B1_FEATURE_UNDERSCORE_ID
 
+// enables PUT and GET statements
+//#define B1_FEATURE_STMT_PUT_GET
+
 
 // constraints and memory usage
 #define B1_MAX_PROGLINE_LEN 255

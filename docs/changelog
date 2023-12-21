@@ -1,3 +1,9 @@
+b1core (1.0.0-9) unstable; urgency=low
+
+  * PUT and GET statements support (B1_FEATURE_STMT_PUT_GET feature)
+
+ -- Nikolay Pletnev <b1justomore@gmail.com>  Thu, 21 Dec 2023 18:13:05 +0300
+
 b1core (1.0.0-8) unstable; urgency=low
 
   * improved tokenizer (underscore character processing)

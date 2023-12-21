@@ -90,6 +90,10 @@
 #ifdef B1_FEATURE_STMT_IOCTL
 #define B1_ID_STMT_IOCTL ((uint8_t)0x1C)
 #endif
+#ifdef B1_FEATURE_STMT_PUT_GET
+#define B1_ID_STMT_PUT ((uint8_t)0x1D)
+#define B1_ID_STMT_GET ((uint8_t)0x1F)
+#endif
 
 
 typedef struct
