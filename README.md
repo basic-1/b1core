@@ -11,6 +11,7 @@
 - embeddable: memory functions, input/output and caching detached from core  
 - [command-line interpreter](https://github.com/basic-1/basic-1) built for Windows x86, Windows x64, Linux i386, Linux amd64, Linux armhf  
 - [interpreter with graphical IDE and debugger](https://github.com/basic-1/basic-1) built for various platforms (uses wxWidgets GUI library)  
+- [BASIC1 compiler for microcontrollers](https://github.com/basic-1/basic-1c) uses the core's tokenizer and infix to postfix expression converter  
 - optional Unicode support  
 - licensed under MIT license  
   

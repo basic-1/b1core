@@ -1,3 +1,9 @@
+b1core (1.0.0-11) unstable; urgency=low
+
+  * documentation updated
+
+ -- Nikolay Pletnev <b1justomore@gmail.com>  Fri, 22 Mar 2024 22:11:27 +0300
+
 b1core (1.0.0-10) unstable; urgency=low
 
   * new token type added: B1_TOKEN_TYPE_DEVNAME (B1_FEATURE_TOKEN_TYPE_DEVNAME feature)

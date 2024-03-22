@@ -63,6 +63,14 @@ Some interpreter's features can be turned on or off by editing application's `fe
   
 `B1_FEATURE_HEX_NUM`: enables hexadecimal format support for integer constants (with `0x` prefix, e.g.: `0xFFFF`)  
   
+`B1_FEATURE_STMT_IOCTL`: enables `IOCTL` statement (for compiler, not supported by interpreter)  
+  
+`B1_FEATURE_UNDERSCORE_ID`: allows underscore characters in identifiers (variables and functions names)  
+  
+`B1_FEATURE_STMT_PUT_GET`: enables `PUT`, `GET` and `TRANSFER` statements (for compiler, not supported by interpreter)  
+  
+`B1_FEATURE_TOKEN_TYPE_DEVNAME`: enables `B1_TOKEN_TYPE_DEVNAME` token type (used by compiler)  
+  
 ## Interpreter's global variables and functions  
   
 Hosting application can control the interpreter core by reading/writing special global variables and calling some functions. The most of them are described below.  
