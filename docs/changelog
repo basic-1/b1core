@@ -1,3 +1,10 @@
+b1core (1.0.0-10) unstable; urgency=low
+
+  * new token type added: B1_TOKEN_TYPE_DEVNAME (B1_FEATURE_TOKEN_TYPE_DEVNAME feature)
+  * TRANSFER statement support (B1_FEATURE_STMT_PUT_GET feature)
+
+ -- Nikolay Pletnev <b1justomore@gmail.com>  Thu, 21 Mar 2024 19:21:43 +0300
+
 b1core (1.0.0-9) unstable; urgency=low
 
   * PUT and GET statements support (B1_FEATURE_STMT_PUT_GET feature)

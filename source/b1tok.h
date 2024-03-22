@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020-2022 Nikolay Pletnev
+ Copyright (c) 2020-2024 Nikolay Pletnev
  MIT license
 
  b1tok.h: tokenizer
@@ -30,6 +30,7 @@
 #define B1_TOKEN_TYPE_IDNAME ((uint8_t)0x4)
 // numeric value
 #define B1_TOKEN_TYPE_NUMERIC ((uint8_t)0x8)
+
 // can be combined with B1_TOKEN_TYPE_IDNAME
 #define B1_TOKEN_TYPE_LETTERS ((uint8_t)0x20)
 // can be combined with B1_TOKEN_TYPE_NUMERIC
@@ -38,6 +39,11 @@
 // can be combined with B1_TOKEN_TYPE_NUMERIC
 #define B1_TOKEN_TYPE_HEX ((uint8_t)0x40)
 #endif
+#ifdef B1_FEATURE_TOKEN_TYPE_DEVNAME
+// device name (a string starting from # character, can be combined with B1_TOKEN_TYPE_IDNAME or B1_TOKEN_TYPE_NUMERIC)
+#define B1_TOKEN_TYPE_DEVNAME ((uint8_t)0x80)
+#endif
+
 // special type, used internally
 #define B1_TOKEN_TYPE_SKIP_SPACES ((uint8_t)0x80)
 

@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020-2023 Nikolay Pletnev
+ Copyright (c) 2020-2024 Nikolay Pletnev
  MIT license
 
  b1tok.c: tokenizer
@@ -68,6 +68,9 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 	B1_T_INDEX b, len, out_index;
 	B1_T_TOKCHAR ctype;
 	uint8_t toktype, extra;
+#ifdef B1_FEATURE_TOKEN_TYPE_DEVNAME
+	uint8_t extra1;
+#endif
 
 	// token starting offset
 	b = offset;
@@ -76,6 +79,9 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 	toktype = B1_TOKEN_TYPE_SKIP_SPACES;
 	// the variable is used to mark some special cases (open/closed quote, dollar sign at the end of variable name, etc.)
 	extra = 0;
+#ifdef B1_FEATURE_TOKEN_TYPE_DEVNAME
+	extra1 = 0;
+#endif
 	out_index = 1;
 	c = 0;
 
@@ -93,6 +99,16 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 
 		// token length
 		len = offset - b;
+
+#ifdef B1_FEATURE_TOKEN_TYPE_DEVNAME
+		if(c == B1_T_C_NUMBER && (toktype & B1_TOKEN_TYPE_SKIP_SPACES))
+		{
+			extra1++;
+			b = offset + 1;
+			toktype = B1_TOKEN_TYPE_UNKNOWN;
+			continue;
+		}
+#endif
 
 		// determine character type
 		if(B1_T_ISCSTRTERM(c))
@@ -137,8 +153,10 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 #ifdef B1_FEATURE_TYPE_DOUBLE
 				c == B1_T_C_NUMBER ||
 #endif
+		// important note: B1_CTYPE_TYPE_SPEC denotes either DOUBLE value/identifier (in the beginning of a token)
+		// or device name (at the end of the token string)
 				c == B1_T_C_PERCENT	?	B1_CTYPE_TYPE_SPEC :
-					B1_CTYPE_UNKNOWN;
+										B1_CTYPE_UNKNOWN;
 
 		// determine token type by its first character
 		if(len == 0)
@@ -160,7 +178,7 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 				// special token type, needed to skip leading spaces
 				ctype & (B1_CTYPE_SPACE | B1_CTYPE_NULL | B1_CTYPE_COMMENT)	?	B1_TOKEN_TYPE_SKIP_SPACES :
 				// string starts from quote sign
-				c == B1_T_C_DBLQUOTE								?	B1_TOKEN_TYPE_QUOTEDSTR :
+				c == B1_T_C_DBLQUOTE							?	B1_TOKEN_TYPE_QUOTEDSTR :
 				// unknown type
 																	B1_TOKEN_TYPE_UNKNOWN;
 
@@ -281,7 +299,7 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 					toktype = B1_TOKEN_TYPE_IDNAME;
 				}
 
-				// extra flag stands for '$', '!' or '%' character presence (it can be the last character of basic function or variable name)
+				// extra flag stands for '$', '!', '#' or '%' character presence (it can be the last character of basic function or variable name)
 				if(!extra)
 				{
 					if(ctype == B1_CTYPE_TYPE_SPEC)
@@ -434,6 +452,20 @@ B1_T_ERROR b1_tok_get(B1_T_INDEX offset, uint8_t options, B1_TOKENDATA *tokendat
 
 		return B1_RES_EINVTOK;
 	}
+
+#ifdef B1_FEATURE_TOKEN_TYPE_DEVNAME
+	if(extra1 != 0)
+	{
+		if((toktype & B1_TOKEN_TYPE_NUMERIC) || (toktype & B1_TOKEN_TYPE_IDNAME))
+		{
+			toktype = B1_TOKEN_TYPE_DEVNAME;
+		}
+		else
+		{
+			return B1_RES_EINVTOK;
+		}
+	}
+#endif
 
 	if(tokendata != NULL)
 	{
