@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020 Nikolay Pletnev
+ Copyright (c) 2020-2024 Nikolay Pletnev
  MIT license
 
  b1itypes.h: internal types (for identifier hash, character, program
@@ -115,7 +115,11 @@ typedef uint16_t B1_T_PROG_LINE_CNT;
 // type for program line number
 typedef uint16_t B1_T_LINE_NUM;
 // type of idendifier hash
+#ifdef B1_FEATURE_HASH_32BIT
+typedef uint32_t B1_T_IDHASH;
+#else
 typedef uint16_t B1_T_IDHASH;
+#endif
 // type for random generator (an unsigned integer type, floating point value returned by RND function
 // is the result of the next expression: ((float)(seed - ((seed == B1_T_RAND_SEED_MAX_VALUE) ? 1 : 0))) / (float)B1_T_RAND_SEED_MAX_VALUE
 typedef uint16_t B1_T_RAND_SEED;

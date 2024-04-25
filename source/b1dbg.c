@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2021 Nikolay Pletnev
+ Copyright (c) 2021-2024 Nikolay Pletnev
  MIT license
 
  b1dbg.c: functions for debugging
@@ -284,7 +284,7 @@ B1_T_ERROR b1_dbg_get_var_dump(const B1_NAMED_VAR *var, B1_T_CHAR *sbuf, B1_T_IN
 
 static int b1_dbg_cmp_line_cnt(const void *lcnt1, const void *lcnt2)
 {
-	B1_T_IDHASH l1, l2;
+	B1_T_PROG_LINE_CNT l1, l2;
 
 	l1 = *((const B1_T_PROG_LINE_CNT *)lcnt1);
 	l2 = *((const B1_T_PROG_LINE_CNT *)lcnt2);

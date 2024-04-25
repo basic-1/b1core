@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020-2023 Nikolay Pletnev
+ Copyright (c) 2020-2024 Nikolay Pletnev
  MIT license
 
  feat.h: interpreter features
@@ -99,6 +99,12 @@
 
 // enables PUT and GET statements
 //#define B1_FEATURE_STMT_PUT_GET
+
+// enables B1_TOKEN_TYPE_DEVNAME token subtype
+//#define B1_FEATURE_TOKEN_TYPE_DEVNAME
+
+// enables using 32-bit hash function for keywords and identifiers
+//#define B1_FEATURE_HASH_32BIT
 
 
 // constraints and memory usage

@@ -1,3 +1,9 @@
+b1core (1.0.0-12) unstable; urgency=low
+
+  * new hash algorithm (for keywords and identifiers)
+
+ -- Nikolay Pletnev <b1justomore@gmail.com>  Thu, 25 Apr 2024 18:16:37 +0300
+
 b1core (1.0.0-11) unstable; urgency=low
 
   * documentation updated

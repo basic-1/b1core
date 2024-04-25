@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020 Nikolay Pletnev
+ Copyright (c) 2020-2024 Nikolay Pletnev
  MIT license
 
  exprg.cpp: external interpreter function samples for loading program
@@ -60,12 +60,12 @@ static B1_T_ERROR b1_ex_prg_read_line(FILE *fp, std::vector<B1_T_CHAR> &ostr)
 
 	err = B1_RES_OK;
 
-	while(1)
+	while(true)
 	{
-		c = fgetwc(fp);
+		c = std::fgetwc(fp);
 		if(c == WEOF)
 		{
-			if(feof(fp))
+			if(std::feof(fp))
 			{
 				err = B1_RES_EEOF;
 			}

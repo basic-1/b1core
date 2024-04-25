@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020 Nikolay Pletnev
+ Copyright (c) 2020-2024 Nikolay Pletnev
  MIT license
 
  b1fn.h: definitions and types for built-in and user defined functions
@@ -17,11 +17,20 @@
 #include "b1var.h"
 
 
+#ifdef B1_FEATURE_HASH_32BIT
+#define B1_FN_TAB_FN_HASH ((B1_T_IDHASH)0x7e3c6)
+#define B1_FN_SPC_FN_HASH ((B1_T_IDHASH)0x7e099)
+#ifdef B1_FEATURE_MINIMAL_EVALUATION
+#define B1_FN_IIF_FN_HASH ((B1_T_IDHASH)0x7aa1f)
+#define B1_FN_STRIIF_FN_HASH ((B1_T_IDHASH)0x11b969f)
+#endif
+#else
 #define B1_FN_TAB_FN_HASH ((B1_T_IDHASH)0xEE85)
 #define B1_FN_SPC_FN_HASH ((B1_T_IDHASH)0xA8C6)
 #ifdef B1_FEATURE_MINIMAL_EVALUATION
 #define B1_FN_IIF_FN_HASH ((B1_T_IDHASH)0x621d)
 #define B1_FN_STRIIF_FN_HASH ((B1_T_IDHASH)0x4866)
+#endif
 #endif
 
 #ifdef B1_FEATURE_FUNCTIONS_STANDARD
