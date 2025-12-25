@@ -1,6 +1,6 @@
 /*
  BASIC1 interpreter
- Copyright (c) 2020-2024 Nikolay Pletnev
+ Copyright (c) 2020-2025 Nikolay Pletnev
  MIT license
 
  b1id.c: hashes for identifiers (variable and function names)
@@ -54,6 +54,9 @@ static const uint8_t b1_id_stmts[] =
 #ifdef B1_FEATURE_STMT_BREAK_CONTINUE
 	B1_ID_STMT_BREAK,
 #endif
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	B1_ID_STMT_CONST,
+#endif
 #ifdef B1_FEATURE_STMT_ERASE
 	B1_ID_STMT_ERASE,
 #endif
@@ -61,6 +64,9 @@ static const uint8_t b1_id_stmts[] =
 	B1_ID_STMT_INPUT,
 #ifdef B1_FEATURE_STMT_IOCTL
 	B1_ID_STMT_IOCTL,
+#endif
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	B1_ID_STMT_LABEL,
 #endif
 	B1_ID_STMT_PRINT,
 #ifdef B1_FEATURE_STMT_WHILE_WEND
@@ -122,6 +128,9 @@ static const B1_T_IDHASH b1_id_stmt_hashes[] =
 #ifdef B1_FEATURE_STMT_BREAK_CONTINUE
 	0x283b8f0c,
 #endif
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	0x2856092a,
+#endif
 #ifdef B1_FEATURE_STMT_ERASE
 	0x2891470f,
 #endif
@@ -129,6 +138,9 @@ static const B1_T_IDHASH b1_id_stmt_hashes[] =
 	0x2900e3ef,
 #ifdef B1_FEATURE_STMT_IOCTL
 	0x2901641a,
+#endif
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	0x294c5553,
 #endif
 	0x29cc0388,
 #ifdef B1_FEATURE_STMT_WHILE_WEND
@@ -157,6 +169,9 @@ static const uint8_t b1_id_stmts[] =
 	B1_ID_STMT_BREAK,
 #endif
 	B1_ID_STMT_RETURN,
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	B1_ID_STMT_CONST,
+#endif
 	B1_ID_STMT_PRINT,
 	B1_ID_STMT_OPTION,
 #ifdef B1_FEATURE_STMT_DATA_READ
@@ -202,6 +217,9 @@ static const uint8_t b1_id_stmts[] =
 #ifdef B1_FEATURE_STMT_IOCTL
 	B1_ID_STMT_IOCTL,
 #endif
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	B1_ID_STMT_LABEL,
+#endif
 	B1_ID_STMT_DIM,
 	B1_ID_STMT_ON,
 #ifdef B1_FEATURE_STMT_DATA_READ
@@ -225,6 +243,9 @@ static const B1_T_IDHASH b1_id_stmt_hashes[] =
 	0xbb3,
 #endif
 	0x104e,
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	0x109c,
+#endif
 	0x10ac,
 	0x129e,
 #ifdef B1_FEATURE_STMT_DATA_READ
@@ -269,6 +290,9 @@ static const B1_T_IDHASH b1_id_stmt_hashes[] =
 #endif
 #ifdef B1_FEATURE_STMT_IOCTL
 	0xbf71,
+#endif
+#ifdef B1_FEATURE_STMT_B1C_MISC
+	0xc74a,
 #endif
 	0xceeb,
 	0xd400,
